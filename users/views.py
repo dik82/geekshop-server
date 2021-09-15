@@ -16,36 +16,30 @@ def login(request):
             if user and user.is_active:
                 auth.login(request, user)
                 return HttpResponseRedirect(reverse('index'))
-        else:
-            print(form.errors)
     else:
         form = UserLoginForm()
     context = {
-        'title': 'GeekShop - Авторизация',
-        'form': form
-    }
+            'title': 'GeekShop - Авторизация',
+            'form': form
+        }
 
     return render(request, 'users/login.html', context)
 
 
 def register(request):
     if request.method == 'POST':
-        form = UserLoginForm(data=request.POST)
+        form = UserRegisterForm(data=request.POST)
         if form.is_valid():
             form.save()
-
-            return HttpResponseRedirect(reverse('products'))
-        else:
-            print(form.errors)
-
+            return HttpResponseRedirect(reverse('users:login'))
     else:
         form = UserRegisterForm()
-        context = {
+    context = {
             'title': 'GeekShop - Регистрация',
             'form': form
         }
 
-        return render(request, 'users/register.html', context)
+    return render(request, 'users/register.html', context)
 
 
 def logout(request):

@@ -10,28 +10,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>
-        {% block title %}
-
-        {% endblock %}
-    </title>
-
+    <title> {{ title }} </title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
     {% block css %}
-        {#    <!-- Custom styles for this template -->#}
-        {#    <link href="{% static 'css/index.css' %}" rel="stylesheet">#}
+        {#        <!-- Custom styles for this template -->#}
+        {#        <link href="{% static 'css/index.css' %}" rel="stylesheet">#}
     {% endblock %}
+
 </head>
 
 <body>
 
 <!-- Navigation -->
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <h7 style="color: #ffffff">{% now "j. m. Yг." %}</h7>
     <div class="container">
         <a class="navbar-brand" href="{% url 'index' %}">GeekShop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -46,14 +40,12 @@
                 </li>
 
                 {% if not user.is_authenticated %}
-
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users:login' %}">Войти <i class="fas fa-sign-in-alt"></i></a>
                     </li>
                 {% else %}
-
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{ user.username }}
+                        <a class="nav-link" href="{% url 'users:profile' %}">{{ user.username }}
                             <i class="fas fa-user-circle"></i>
                         </a>
                     </li>
@@ -67,11 +59,11 @@
                                 class="fas fa-sign-out-alt"></i></a>
                     </li>
                 {% endif %}
-
             </ul>
         </div>
     </div>
 </nav>
+
 
 <!-- Page Content -->
 {% block content %}
@@ -88,8 +80,9 @@
 <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 <!-- FontAwesome script -->
-<script src="{% static 'vendor/fontawesome/fontawesome-icons.js" crossorigin="anonymous' %}"></script>
+<script src="{% static 'vendor/fontawesome/fontawesome-icons.js' %}" crossorigin="anonymous"></script>
 
 </body>
 
 </html>
+

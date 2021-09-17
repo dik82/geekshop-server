@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.contrib.auth.decorators import login_required
 import os
 import json
 
@@ -13,6 +13,7 @@ MODULE_DIR = os.path.dirname(__file__)
 def index(request):
     context = {'title': 'Geekshop'}
     return render(request, 'index.html', context)
+
 
 
 def products(request):

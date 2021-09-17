@@ -1,4 +1,5 @@
 """geekshop URL Configuration
+
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
@@ -15,13 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-app_name = 'users'
+app_name = 'baskets'
 
-from users.views import login, register, logout, profile
+from baskets.views import baskets_add, basket_remove
 
 urlpatterns = [
-    path('login/', login, name='login'),
-    path('register/', register, name='register'),
-    path('logout/', logout, name='logout'),
-    path('profile/', profile, name='profile'),
+    path('baskets_add/<int:id>', baskets_add, name='baskets_add'),
+    path('delete/<int:id>', basket_remove, name='basket_remove'),
 ]
